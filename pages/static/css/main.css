@@ -1,0 +1,90 @@
+#main-nav {
+    background-color: #292d32;
+}
+body {
+    background-color: #292d32;
+    color: #f8f9fa !important;
+}
+.btn-primary {
+    background-color: transparent;
+    border-radius: 0;
+    border: 3px solid white;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: transparent;
+    border-color: white;
+}
+#book-now {
+    min-height: 20rem;
+}
+.title,
+.sub-title {
+    margin: 0;
+    font-family: 'Fredericka the Great', cursive !important;
+}
+.title::before,
+.title::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: white;
+    margin: 1rem 0;
+}
+.title::before {
+    margin-top: 0;
+}
+.title::after {
+    margin-bottom: 0;
+}
+.timeslot:hover {
+    cursor: pointer;
+    background: whitesmoke;
+}
+.service:hover {
+    cursor: pointer;
+}
+.selected {
+    background: rgb(199, 199, 199);
+}
+.logo {
+    width: 40px !important;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+footer {
+    border-top: 1px solid white;
+}
+footer a {
+    text-decoration: none; 
+    font-size: 1rem; 
+}
+.fa-instagram {
+    font-size: 1.2rem;
+}
+.wrapper img {
+    height: 2.5rem;
+}
+@media(min-width: 600px) {
+    .nav-link:not(:last-child)::after {
+        content: '';
+        display: block;
+        background-color: white;
+        width: 0;
+        height: 1px;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:not(:last-child)::after {
+        width: 100%;
+    }
+}
+@media(min-width: 1060px) {
+    #slider .row .carousel {
+        height: 60vh;
+        overflow: hidden;
+    }
+}
