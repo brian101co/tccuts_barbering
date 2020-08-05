@@ -6,5 +6,6 @@ from .models import Page
 class HomePageView(View):
     def get(self, request):
         services = Service.objects.all()
+        total = Service.objects.count()
         home = Page.objects.first()
-        return render(request, 'pages/index.html', {'services':services, 'page':home})
+        return render(request, 'pages/index.html', {'services':services, 'page':home, 'total':total})

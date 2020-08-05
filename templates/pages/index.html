@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load mathfilters %}
 
 {% block head %}
 <meta name="description" content="Serving Picayune MS and the surrounding area, Isaac is a local barber providing professional, qaulity haircuts.">
@@ -109,9 +110,34 @@
 <section id="services">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 pb-5 d-flex flex-column align-items-center">
+            <div class="col-sm-12 pb-5">
                 <h1 class="text-center text-white display-4 title w-100">Services</h1>
-                <img src="{% static 'img/IsaacSlattenChalkboard.svgz' %}" class="img-fluid mt-5" alt="">
+                <div class="container service-section mt-5">
+                    <div class="row mx-auto">
+                            <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
+                                {% for service in services %}
+                                    {% if forloop.counter <= total|div:2 %}
+                                    <div class="service">
+                                        <p class="text-light my-2">{{ service }}</p>
+                                        <div>${{ service.price }}0</div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
+                                {% for service in services %}
+                                    {% if forloop.counter > total|div:2 %}
+                                    <div class="service">
+                                        <p class="text-light my-2">{{ service }}</p>
+                                        <div>${{ service.price }}0</div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

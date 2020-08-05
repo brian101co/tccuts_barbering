@@ -68,7 +68,18 @@ footer a {
 .wrapper img {
     height: 2.5rem;
 }
-@media(min-width: 600px) {
+
+.service {
+    display: flex;
+    width: 16rem;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Fredericka the Great';
+    font-size: 1.2rem;
+}
+
+
+@media(min-width: 550px) {
     .nav-link:not(:last-child)::after {
         content: '';
         display: block;
@@ -80,6 +91,10 @@ footer a {
 
     .nav-link:hover:not(:last-child)::after {
         width: 100%;
+    }
+    
+    .service {
+        width: 18rem;
     }
 }
 @media(min-width: 1060px) {
