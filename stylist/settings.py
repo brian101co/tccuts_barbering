@@ -19,6 +19,7 @@ ALLOWED_HOSTS = ['www.devlogos.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,6 +132,7 @@ CORS_ORIGIN_WHITELIST = [
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+
 
 try:
     from .local_settings import *

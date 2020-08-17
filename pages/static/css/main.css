@@ -78,6 +78,18 @@ footer a {
     font-size: 1.2rem;
 }
 
+.skip-to-content-link {
+  left: 50%;
+  position: fixed;
+  transform: translateY(-100%);
+  background-color: white;
+  padding: 16px;
+  color: black;
+}
+
+.skip-to-content-link:focus {
+    transform: translateY(0%);
+}
 
 @media(min-width: 550px) {
     .nav-link:not(:last-child)::after {
