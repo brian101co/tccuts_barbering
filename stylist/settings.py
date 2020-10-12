@@ -13,12 +13,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.devlogos.com']
+ALLOWED_HOSTS = ['www.tccuts.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,8 +70,11 @@ WSGI_APPLICATION = 'stylist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'brian101co$isaac-portfolio',
+        'USER': 'brian101co',
+        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': 'brian101co.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -115,7 +119,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
@@ -125,12 +129,20 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:4200",
-    "http://localhost:8000",
+    "www.tccuts.com",
 ]
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+
+JAZZMIN_SETTINGS = {
+    'site_title': 'Tccuts Admin',
+    'site_header': 'Tccuts',
+    'site_logo': 'img/logo.png',
+
+    'copyright': 'Isaac Slatten',
+
+}
 
 try:
     from .local_settings import *

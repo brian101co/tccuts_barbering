@@ -4,20 +4,25 @@
 {% load mathfilters %}
 
 {% block head %}
-<meta name="description" content="Serving Picayune MS and the surrounding area, Isaac is a local barber providing professional, qaulity haircuts.">
+<meta name="description" content="Serving Picayune MS and the surrounding area, Isaac is a local barber providing professional, quality haircuts.">
 {% endblock %}
 
-{% block styles %} 
+{% block styles %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
 
-{% block title %} 
-    Isaac Slattern | Barber
+{% block title %}
+    Isaac Slatten | Barber
 {% endblock %}
 
 {% block content %}
 
-<nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
+
+<header>
+  <a class="skip-to-content-link" href="#main">
+    Skip to content
+  </a>
+  <nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="{% static 'img/logo.png' %}" alt="logo" class="logo mr-2">
@@ -35,15 +40,17 @@
           </div>
         </div>
     </div>
-</nav>
+  </nav>
+</header>
 
+<main id="main">
 <section id="slider">
     <div class="row">
         <div class="col-sm-12">
             <div id="carousel-controls" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for carousel_item in page.carousel.all %}
-                    <li data-target="#carousel-controls" data-slide-to="forloop.counter0"></li>
+                    <li data-target="#carousel-controls" data-slide-to="{{ forloop.counter0 }}"></li>
                     {% empty %}
                     <li data-target="#carousel-controls" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-controls" data-slide-to="1"></li>
@@ -52,7 +59,7 @@
                 </ol>
                 <div class="carousel-inner">
                     {% for carousel_item in page.carousel.all %}
-                    <div class="carousel-item active">
+                    <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
                         <img src="{{ carousel_item.image.url }}" class="img-fluid" alt="{{ carousel_item.description }}">
                     </div>
                     {% empty %}
@@ -86,7 +93,7 @@
             <div class="col-sm-12 py-5 lighten-text">
                 <h1 class="text-center text-white title display-4">About</h1>
                 <div class="spacer mt-5"></div>
-                    {{ page.about|linebreaks }}  
+                    {{ page.about|linebreaks }}
             </div>
         </div>
     </div>
@@ -100,7 +107,7 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="{{ thumbnail.image.url }}" class="d-block mb-4 h-100">
                     <img class="img-fluid img-thumbnail" src="{{ thumbnail.image.url }}" alt="{{ thumbnail.description }}">
-                </a>    
+                </a>
             </div>
         {% endfor %}
         </div>
@@ -119,7 +126,7 @@
                                     {% if forloop.counter <= total|div:2 %}
                                     <div class="service">
                                         <p class="text-light my-2">{{ service }}</p>
-                                        <div>${{ service.price }}0</div>
+                                        <div class="ml-3">${{ service.price }}0</div>
                                     </div>
                                     {% endif %}
                                 {% endfor %}
@@ -129,7 +136,7 @@
                                     {% if forloop.counter > total|div:2 %}
                                     <div class="service">
                                         <p class="text-light my-2">{{ service }}</p>
-                                        <div>${{ service.price }}0</div>
+                                        <div class="ml-3">${{ service.price }}0</div>
                                     </div>
                                     {% endif %}
                                 {% endfor %}
@@ -137,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -214,15 +221,14 @@
                         <button type="submit" class="btn btn-primary px-4 mt-3">Next</button>
                     </form>
                 </div>
-           
+
             </div>
             <!-- Step 3 -->
             <div class="step step-3 d-none">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card p-5 thank-you">
-                            <p class="text-body">Thank you! A 50% non-refundable deposit is required to complete your appointment. You may change your appointment at anytime.</p>
-                            <div id="paypal-button" class="mx-auto"></div>
+                            <p class="text-body">Thank you! Your appointment has been booked and will recieve a confirmation email shortly. </p>
                         </div>
                     </div>
                 </div>
@@ -230,6 +236,8 @@
         </div>
     </div>
 </section>
+</main>
+
 
 <div class="container">
     <footer class="px-4 py-5">
@@ -239,7 +247,7 @@
                     <img src="{% static 'img/aitia.svgz' %}" alt="Designed & Developed by AITIA Development" class="mr-3">
                     <p class="text-light mb-0">
                         Designed and Developed<br>
-                        by AITIA 
+                        by AITIA
                     </p>
                 </div>
             </div>
@@ -256,9 +264,8 @@
     </footer>
 </div>
 
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 {% endblock %}
 
-{% block scripts %} 
+{% block scripts %}
 <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
