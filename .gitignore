@@ -5,5 +5,5 @@ __pycache__/
 local_settings.py
 /.env
 /static
-/sendgrid.env
+sendgrid.env
 /media
