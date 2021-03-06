@@ -135,8 +135,6 @@ CORS_ORIGIN_WHITELIST = [
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
-<<<<<<< HEAD
-=======
 JAZZMIN_SETTINGS = {
     'site_title': 'Tccuts Admin',
     'site_header': 'Tccuts',
@@ -145,7 +143,6 @@ JAZZMIN_SETTINGS = {
     'copyright': 'Isaac Slatten',
 
 }
->>>>>>> 71b6e9dfa2ab08205e48e95fe62eb7779d7e40ba
 
 try:
     from .local_settings import *
