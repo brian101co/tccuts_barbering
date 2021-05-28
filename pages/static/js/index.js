@@ -183,27 +183,6 @@ $('.step-2 button').click((event) => {
                 },
                 success: function (data, status) {
                     showThankyouMessage();
-                    console.log(data);
-                    // $.ajax({
-                    //     url: window.location.href + 'api/email/',
-                    //     type: 'POST',
-                    //     headers: {
-                    //         'X-CSRFToken': csrftoken,
-                    //         'Content-Type': 'application/json',
-                    //     },
-                    //     data: JSON.stringify({
-                    //         start: state.booking.start,
-                    //         service: state.booking.service,
-                    //         total: state.booking.price,
-                    //         email: state.booking.customer.email,
-                    //         date: state.date.format("dddd, MMMM Do YYYY, [at] h:mm a"),
-                    //         phone: state.booking.customer.cell,
-                    //         name: state.booking.customer.first_name,
-                    //     }),
-                    //     success: function () {
-                    //         console.log('success');
-                    //     }
-                    // });
                 }
             });
         });
