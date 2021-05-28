@@ -26,7 +26,9 @@
         <hr>
         <h2>Appointment Details</h2>
         <p>Date: {{ date }}</p>
-        <p>Appointment Start Time: {{ start }}</p>
-        {{ service }}
+        {% for service in service %}
+            <p>{{ service.title }}</p>
+        {% endfor %}
+        <p>Total: ${{ price }}</p>
     </div>
 </body>

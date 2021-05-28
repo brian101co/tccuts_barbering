@@ -166,10 +166,6 @@ Isaac Slatten | Barber
                                         <label for="date" class="text-light">Select a Date</label>
                                         <div class="d-flex">
                                             <input type="text" id="date" class="form-control datepicker mr-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
-                                                <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
-                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                            </svg>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Find Openings</button>
@@ -217,12 +213,14 @@ Isaac Slatten | Barber
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 offset-md-3">
-                                    <p class="text-light text-center">Select Services</p>
-                                    <ul class="list-group">
-                                        {% for service in services %}
-                                        <li class="list-group-item text-body service" data-price="{{ service.price }}">{{ service.title }}</li>
-                                        {% endfor %}
-                                    </ul>
+                                    <div class="d-flex flex-column align-items-center justify-content-center">
+                                        <p class="text-light">Select Services</p>
+                                        <ul class="list-group">
+                                            {% for service in services %}
+                                            <li class="list-group-item text-body service" data-price="{{ service.price }}">{{ service.title }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary px-4 mt-3">Book Appointment</button>
@@ -234,8 +232,12 @@ Isaac Slatten | Barber
                 <div class="step step-3 d-none">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card p-5 thank-you">
-                                <p class="text-body">Thank you! Your appointment has been booked and will recieve a confirmation email shortly. </p>
+                            <div class="card p-3 thank-you">
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border text-light" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -245,21 +247,19 @@ Isaac Slatten | Barber
     </section>
 </main>
 
-
 <div class="container">
     <footer class="px-4 py-5">
         <div class="row">
             <div class="col-sm-12 col-md-4 d-flex justify-content-center">
                 <div class="wrapper d-flex align-items-center">
-                    <img src="{% static 'img/aitia.svgz' %}" alt="Designed & Developed by AITIA Development" class="mr-3">
-                    <p class="text-light mb-0">
+                    <p class="text-light text-center mb-0">
                         Designed and Developed<br>
-                        by AITIA
+                        by Oliver Web Development
                     </p>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
-                <p class="text-center text-light mb-0 my-4 my-md-0"> &copy; 2020 Isaac Slatten</p>
+                <p class="text-center text-light mb-0 my-4 my-md-0 copyright"></p>
             </div>
             <div class="col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
                 <a href="https://www.instagram.com/tc_cuts/" class="d-flex justify-content-center align-items-center text-light">
@@ -274,7 +274,8 @@ Isaac Slatten | Barber
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.5/dayjs.min.js" integrity="sha512-n6mJ6AqoohFfbgx3x7N162B/zRNs5x8uvsStlHC+LCvqwKW7oiucE07Ehatg62ybx6Vo1ctaZwm/4sSRUTSIQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-<script src="{% static 'js/main.js' %}"></script>
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}

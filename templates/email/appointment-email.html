@@ -23,9 +23,10 @@
     <div class="main" >
         <h2>Appointment Details</h2>
         <p>Date: {{ date }}</p>
-        <p>Appointment Start Time: {{ start }}</p>
-        {{ service }}
-        <p>Total: ${{ total }}</p>
+        {% for service in services %}
+            <p>{{ service.title }}</p>
+        {% endfor %}
+        <p>Total: ${{ price }}</p>
         <h2>Customer Contact Information</h2>
         <p>First Name: {{ name }}</p>
         <p>Email: {{ email }}</p>

@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'stylist.urls'
+ROOT_URLCONF = 'barber_shop.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'stylist.wsgi.application'
+WSGI_APPLICATION = 'barber_shop.wsgi.application'
 
 
 # Database
@@ -109,7 +109,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

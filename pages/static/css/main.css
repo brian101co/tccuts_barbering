@@ -68,7 +68,10 @@ footer a {
 .wrapper img {
     height: 2.5rem;
 }
-
+.btn-primary.focus, .btn-primary:focus {
+    background-color: initial;
+    border-color: initial;
+}
 .service {
     display: flex;
     width: 16rem;
@@ -77,7 +80,6 @@ footer a {
     font-family: 'Fredericka the Great';
     font-size: 1.2rem;
 }
-
 .skip-to-content-link {
   left: 50%;
   position: fixed;

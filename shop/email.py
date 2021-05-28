@@ -1,55 +1,17 @@
 import os
+from django.template.loader import render_to_string
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-from stylist.settings import SENDGRID_API_KEY
+from barber_shop.settings import SENDGRID_API_KEY
 
-def send_confirmation_email(start, to_emails, date, service):
-    style = '''
-            <style>
-                main {
-                    font-family: 'Arial';
-                }
-
-                h1 {
-
-                    text-align: center;
-                    font-size: 3rem;
-                    margin-bottom: 1rem;
-                }
-
-                .subtitle {
-                    text-align: center;
-                    font-size: 1.75rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                h2 {
-                    text-align: center;
-                }
-
-                p {
-                    text-align: center;
-                }
-            </style>
-            '''
+def send_confirmation_email(to_emails, date, services, price):
+    email_template = render_to_string("email/confirmation-email.html", {"date": date, "services": services, "price": price})
     message = Mail(
         from_email='isaacslatten27@gmail.com',
         to_emails=to_emails,
-        subject='Isaac Slatten: Appointment Confirmation and Details',
-        html_content=f'''
-        <body>
-            {style}
-            <div class="main" >
-                <h1>Thank You!</h1>
-                <div class="subtitle" >Your appointment has been successfully scheduled.</div>
-                <hr>
-                <h2>Appointment Details</h2>
-                <p>Date: { date }</p>
-                <p>Appointment Start Time: { start }</p>
-                { service }
-            </div>
-            </body>
-        ''')
+        subject='Isaac Slatten (Tccuts): Appointment Confirmation and Details',
+        html_content=email_template
+    )
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         sg.send(message)
@@ -57,54 +19,14 @@ def send_confirmation_email(start, to_emails, date, service):
     except Exception as e:
         print(e)
 
-def appointment_email(start, date, service, name, email, phone):
-    style = '''
-            <style>
-                main {
-                    font-family: 'Arial';
-                }
-
-                h1 {
-
-                    text-align: center;
-                    font-size: 3rem;
-                    margin-bottom: 1rem;
-                }
-
-                .subtitle {
-                    text-align: center;
-                    font-size: 1.75rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                h2 {
-                    text-align: center;
-                }
-
-                p {
-                    text-align: center;
-                }
-            </style>
-            '''
+def send_appointment_email(date, service, name, email, phone, price):
+    email_template = render_to_string("email/appointment-email.html", {"date": date, "services": service, "name": name, "email": email, "phone": phone, "price":price})
     message = Mail(
         from_email='isaacslatten27@gmail.com',
         to_emails='isaacslatten27@gmail.com',
         subject='New Appointment Booked!',
-        html_content=f'''
-        <body>
-            {style}
-            <div class="main" >
-                <h2>Appointment Details</h2>
-                <p>Date: { date }</p>
-                <p>Appointment Start Time: { start }</p>
-                { service }
-                <h2>Customer Contact Information</h2>
-                <p>First Name: { name }</p>
-                <p>Email: { email }</p>
-                <p>Phone: { phone }</p>
-            </div>
-            </body>
-        ''')
+        html_content=email_template
+    )
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         sg.send(message)
