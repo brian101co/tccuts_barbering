@@ -26,7 +26,7 @@ class ReservationView(APIView):
             qs = Reservation.objects.filter(start__date=date).all()
             openings = getOpenings(date, qs)
             return Response(data=json.dumps(openings), status=200)
-        return Response(data=jason.dumps([{"message": "Please specify a date query parameter. Ex: ?date='YYYY-MM-DD'"}]), status=200)
+        return Response(data=json.dumps([{"message": "Please specify a date query parameter. Ex: ?date='YYYY-MM-DD'"}]), status=200)
 
     def post(self, request, *args, **kwargs):
         serializer = ReservationSerializer(data=request.data)
