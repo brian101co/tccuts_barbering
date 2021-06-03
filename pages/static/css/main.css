@@ -45,9 +45,9 @@ body {
 .service:hover {
     cursor: pointer;
 }
-.selected {
+/* .selected {
     background: rgb(199, 199, 199);
-}
+} */
 .logo {
     width: 40px !important;
 }

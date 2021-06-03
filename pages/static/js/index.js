@@ -193,6 +193,7 @@ $('.step-2 button').click((event) => {
 
 $('.list-group-item').click((event) => {
     const price = parseFloat(event.target.getAttribute('data-price'));
+    const checkmark = event.target.firstElementChild;
     if (event.target.classList.contains('selected')) {
         state.booking.price -= price;
         state.booking.service = state.booking.service.filter(service => service.title != event.target.innerText);
@@ -201,4 +202,5 @@ $('.list-group-item').click((event) => {
         state.booking.service.push({title: event.target.innerText});
     }
     event.target.classList.toggle('selected');
+    checkmark.classList.toggle("d-none");
 });
