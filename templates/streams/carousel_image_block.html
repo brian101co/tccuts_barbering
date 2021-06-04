@@ -1,0 +1,4 @@
+{% load wagtailimages_tags wagtailimages_tags %}
+
+{% image self.image original as img %}
+<img src="{{ img.url }}" class="img-fluid" alt="{{ img.alt }}">

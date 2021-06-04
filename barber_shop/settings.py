@@ -19,8 +19,6 @@ ALLOWED_HOSTS = ['www.tccuts.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -31,6 +29,22 @@ INSTALLED_APPS = [
     'corsheaders',
     'pages',
     'mathfilters',
+
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.modeladmin',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    'modelcluster',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -135,14 +150,7 @@ CORS_ORIGIN_WHITELIST = [
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
-JAZZMIN_SETTINGS = {
-    'site_title': 'Tccuts Admin',
-    'site_header': 'Tccuts',
-    'site_logo': 'img/logo.png',
-
-    'copyright': 'Isaac Slatten',
-
-}
+WAGTAIL_SITE_NAME = 'Tccuts'
 
 try:
     from .local_settings import *

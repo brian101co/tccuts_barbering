@@ -24,7 +24,7 @@ body {
     margin: 0;
     font-family: 'Fredericka the Great', cursive !important;
 }
-.title::before,
+/* .title::before, */
 .title::after {
     content: '';
     display: block;
