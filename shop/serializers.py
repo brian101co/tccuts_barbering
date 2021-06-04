@@ -1,5 +1,6 @@
 from .models import Customer, Reservation, Schedule, Service
 from rest_framework import serializers
+from django.core.exceptions import MultipleObjectsReturned
 
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +23,17 @@ class ReservationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         customer_data = validated_data.pop('customer')
         service_data = validated_data.pop('service')
-        customer = Customer.objects.create(**customer_data)
+
+        try:
+            customer, created = Customer.objects.update_or_create(
+                first_name=customer_data.pop("first_name"),
+                last_name=customer_data.pop("last_name"),
+                cell=customer_data.pop("cell"),
+                defaults=customer_data
+            )
+        except MultipleObjectsReturned:
+            raise serializers.ValidationError("Duplicate Records Exist")
+            
         reservation = Reservation.objects.create(customer=customer, **validated_data)
         for key in service_data:
             service = Service.objects.get(title=key['title'])
