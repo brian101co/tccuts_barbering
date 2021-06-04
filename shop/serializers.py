@@ -9,7 +9,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ['first_name', 'last_name', 'cell', 'email']
+        fields = ['first_name', 'last_name', 'cell', 'email', 'recieve_updates']
 
 class ReservationSerializer(serializers.ModelSerializer):
     service = ServiceSerializer(many=True)

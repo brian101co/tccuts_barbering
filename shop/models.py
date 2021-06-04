@@ -12,6 +12,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=100)
     cell = models.CharField(max_length=12)
     email = models.EmailField()
+    recieve_updates = models.BooleanField(default=False)
 
     panels = [
         MultiFieldPanel(
@@ -27,7 +28,8 @@ class Customer(models.Model):
                 FieldPanel("email")
             ],
             heading="Contact Information"
-        )
+        ),
+        FieldPanel("recieve_updates")
     ]
 
     def __str__(self):
