@@ -24,7 +24,7 @@ body {
     margin: 0;
     font-family: 'Fredericka the Great', cursive !important;
 }
-.title::before,
+/* .title::before, */
 .title::after {
     content: '';
     display: block;
@@ -45,9 +45,9 @@ body {
 .service:hover {
     cursor: pointer;
 }
-.selected {
+/* .selected {
     background: rgb(199, 199, 199);
-}
+} */
 .logo {
     width: 40px !important;
 }
