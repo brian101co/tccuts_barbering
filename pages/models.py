@@ -34,6 +34,9 @@ class Gallery(models.Model):
         FieldPanel("description")
     ]
 
+    def __str__(self):
+        return self.description
+
 @register_snippet
 class Testimonial(models.Model):
     image = models.ForeignKey(

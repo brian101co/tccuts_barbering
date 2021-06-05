@@ -115,6 +115,13 @@ class Schedule(models.Model):
     panels = [
         MultiFieldPanel(
             [
+                FieldPanel("schedule_start_date"),
+                FieldPanel("schedule_end_date")
+            ],
+            heading="Schedule Dates"
+        ),
+        MultiFieldPanel(
+            [
                 FieldPanel("monday_time_block"),
                 FieldPanel("monday_start"),
                 FieldPanel("monday_end")

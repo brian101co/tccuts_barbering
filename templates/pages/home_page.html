@@ -35,6 +35,7 @@ Isaac Slatten | Barber
                     <a class="nav-item nav-link text-white mr-3" href="#about">About</a>
                     <a class="nav-item nav-link text-white mr-3" href="#gallery">Gallery</a>
                     <a class="nav-item nav-link text-white mr-3" href="#services">Services</a>
+                    <a class="nav-item nav-link text-white mr-3" href="#testimonials">Testimonials</a>
                     <a class="nav-item nav-link text-white btn btn-primary px-4" href="#book-now">Book Now</a>
                 </div>
             </div>
@@ -103,9 +104,10 @@ Isaac Slatten | Barber
             <h1 class="text-center text-white title display-4">Gallery</h1>
             <div class="row text-center text-lg-left mt-5">
                 {% for image in gallery_images %}
+                {% image image.image fill-300x300 as img %}
                 <div class="col-lg-3 col-md-4 col-6">
-                    <a href="{{ image.url }}" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="{{ image.url }}" alt="{{ image.description }}">
+                    <a href="{{ img.url }}" class="d-block mb-4 h-100">
+                        <img class="img-fluid img-thumbnail" src="{{ img.url }}" alt="{{ image.alt }}">
                     </a>
                 </div>
                 {% endfor %}
