@@ -33,8 +33,6 @@ class ReservationView(APIView):
         serializer = ReservationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            send_confirmation_email(serializer.data["customer"]["email"], request.data["date"], serializer.data["service"], request.data["price"])
-            send_appointment_email(request.data["date"], serializer.data["service"], serializer.data["customer"]["first_name"], serializer.data["customer"]["email"], serializer.data["customer"]["cell"], request.data["price"])
             date = request.data["date"]
             phone_num = serializer.data["customer"]["cell"]
             f_name = serializer.data["customer"]["first_name"]
