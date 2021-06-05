@@ -152,6 +152,11 @@ SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 WAGTAIL_SITE_NAME = 'Tccuts'
 
+# TWILIO SMS
+ACCOUNT_SID = os.getenv("ACCOUNT_SID")
+AUTH_TOKEN = os.getenv("AUTH_TOKEN")
+TWILIO_PHONE_NUM = os.getenv("TWILIO_PHONE_NUM")
+
 try:
     from .local_settings import *
 except ImportError:
