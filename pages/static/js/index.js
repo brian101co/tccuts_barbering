@@ -11,6 +11,7 @@ const state = {
             last_name: null,
             email: null,
             cell: null,
+            recieve_updates: false
         },
         service: [],
     }
@@ -162,6 +163,7 @@ $('.step-2 button').click((event) => {
     const last_name = $('#last-name').val();
     const email = $('#email').val();
     const phone = $('#phone').val();
+    const recieve_updates = $('#recieve-updates').is(':checked');
     const step2 = $('.step-2');
 
     if (first_name && last_name && email && phone) {
@@ -169,6 +171,7 @@ $('.step-2 button').click((event) => {
         state.booking.customer.last_name = last_name;
         state.booking.customer.email = email;
         state.booking.customer.cell = phone;
+        state.booking.customer.recieve_updates = recieve_updates;
 
         step2.fadeOut(function () {
             $('.step-3').toggleClass('d-none');
@@ -191,7 +194,7 @@ $('.step-2 button').click((event) => {
     }
 });
 
-$('.list-group-item').click((event) => {
+$('.step-2 .list-group-item').click((event) => {
     const price = parseFloat(event.target.getAttribute('data-price'));
     const checkmark = event.target.firstElementChild;
     if (event.target.classList.contains('selected')) {
