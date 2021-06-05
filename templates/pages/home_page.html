@@ -93,7 +93,9 @@ Isaac Slatten | Barber
                 <div class="col-sm-12 lighten-text">
                     <h1 class="text-center text-white title display-4">About</h1>
                     <div class="spacer mt-5"></div>
-                    {% include_block page.about %}
+                    {% for block in page.about %}
+                        {% include_block block %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -148,7 +150,7 @@ Isaac Slatten | Barber
                 {% for testimonial in self.testimonial_placements.all %}
                 {% image testimonial.testimonial.image fill-100x100 as img %}
                 <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="card mb-3">
+                    <div class="card mb-3 h-100">
                         <div class="card-body">
                             <div class="image-container d-flex justify-content-center">
                                 <img class="rounded-circle" src="{{ img.url }}" alt="{{ img.alt }}">
@@ -277,7 +279,7 @@ Isaac Slatten | Barber
                 <div class="wrapper d-flex align-items-center">
                     <p class="text-light text-center mb-0">
                         Designed and Developed<br>
-                        by Oliver Web Development
+                        by <a class="text-light" href="https://www.oliverwebdevelopment.com/"><u>Oliver Web Development</u></a>
                     </p>
                 </div>
             </div>
