@@ -149,7 +149,7 @@ Isaac Slatten | Barber
                 </div>
                 {% for testimonial in self.testimonial_placements.all %}
                 {% image testimonial.testimonial.image fill-100x100 as img %}
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-sm-12 col-lg-4 mb-3">
                     <div class="card mb-3 h-100">
                         <div class="card-body">
                             <div class="image-container d-flex justify-content-center">
@@ -201,6 +201,9 @@ Isaac Slatten | Barber
                     <div class="step step-2 d-none">
                         <form action="." method="POST">
                             <div class="row">
+                                <div class="col-sm-12">
+                                    <h5 class="text-light">Booking Details</h5>
+                                </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="first-name" class="text-light">First Name</label>
@@ -236,7 +239,7 @@ Isaac Slatten | Barber
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 offset-md-3">
                                     <div class="d-flex flex-column align-items-center justify-content-center my-3">
-                                        <p class="text-light">Select Services</p>
+                                        <h5 class="text-light mt-4">Select Services</h5>
                                         <ul class="list-group">
                                             {% for service in services %}
                                             <li class="list-group-item text-body service" data-price="{{ service.price }}">

@@ -24,6 +24,9 @@ body {
     margin: 0;
     font-family: 'Fredericka the Great', cursive !important;
 }
+.title {
+    font-size: 3rem;
+}
 /* .title::before, */
 .title::after {
     content: '';
@@ -108,11 +111,12 @@ footer a {
         height: 1px;
         transition: width 0.3s ease;
     }
-
+    .title {
+        font-size: 4rem;
+    }   
     .nav-link:hover:not(:last-child)::after {
         width: 100%;
     }
-    
     .service {
         width: 18rem;
     }
