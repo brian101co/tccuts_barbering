@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'pages',
     'mathfilters',
+    'django_extensions',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -144,10 +145,10 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "www.tccuts.com",
+    "https://www.tccuts.com",
 ]
 
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 WAGTAIL_SITE_NAME = 'Tccuts'

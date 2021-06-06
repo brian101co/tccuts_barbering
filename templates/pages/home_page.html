@@ -35,7 +35,9 @@ Isaac Slatten | Barber
                     <a class="nav-item nav-link text-white mr-3" href="#about">About</a>
                     <a class="nav-item nav-link text-white mr-3" href="#gallery">Gallery</a>
                     <a class="nav-item nav-link text-white mr-3" href="#services">Services</a>
-                    <a class="nav-item nav-link text-white mr-3" href="#testimonials">Testimonials</a>
+                    {% if self.testimonial_placements.all %}
+                        <a class="nav-item nav-link text-white mr-3" href="#testimonials">Testimonials</a>
+                    {% endif %}
                     <a class="nav-item nav-link text-white btn btn-primary px-4" href="#book-now">Book Now</a>
                 </div>
             </div>

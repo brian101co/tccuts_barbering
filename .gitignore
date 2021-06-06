@@ -8,3 +8,4 @@ local_settings.py
 sendgrid.env
 /media
 db.sqlite3
+shop.json
