@@ -42,5 +42,9 @@ class ReservationView(APIView):
                 f"Your appointment has been booked for {date}. Thank you, {f_name}!",
                 phone_num
             )
+            message = send_sms_confirmation(
+                f"New appointment! {f_name} has booked an appointment for {date}.",
+                "6013472434"
+            )
             return Response(data=serializer.data, status=201)
         return Response(data=serializer.errors, status=400)
