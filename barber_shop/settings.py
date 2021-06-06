@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'pages',
-    'mathfilters',
     'django_extensions',
 
     'wagtail.contrib.forms',
