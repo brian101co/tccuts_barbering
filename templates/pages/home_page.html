@@ -130,13 +130,15 @@ Isaac Slatten | Barber
                     <h1 class="text-center text-white display-4 title">Testimonials</h1>
                 </div>
                 {% for testimonial in self.testimonial_placements.all %}
-                {% image testimonial.testimonial.image fill-100x100 as img %}
                 <div class="col-sm-12 col-lg-4 mb-3">
                     <div class="card mb-3 h-100">
                         <div class="card-body">
-                            <div class="image-container d-flex justify-content-center">
-                                <img class="rounded-circle" src="{{ img.url }}" alt="{{ img.alt }}">
-                            </div>
+                            {% if testimonial.testimonial.image %}
+                                {% image testimonial.testimonial.image fill-100x100 as img %}
+                                <div class="image-container d-flex justify-content-center">
+                                    <img class="rounded-circle" src="{{ img.url }}" alt="{{ img.alt }}">
+                                </div>
+                            {% endif %}
                             <h5 class="card-title text-dark text-center mt-2">{{ testimonial.testimonial.name }}</h5>
                             <p class="card-text text-dark text-center">
                                 {{ testimonial.testimonial.testimonial_text }}

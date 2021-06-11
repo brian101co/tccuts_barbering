@@ -41,7 +41,7 @@ class Gallery(models.Model):
 class Testimonial(models.Model):
     image = models.ForeignKey(
         'wagtailimages.Image',
-        blank=False,
+        blank=True,
         null=True,
         related_name='+',
         on_delete=models.SET_NULL,
