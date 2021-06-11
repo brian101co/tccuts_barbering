@@ -36,12 +36,16 @@ class ReservationView(APIView):
             date = request.data["date"]
             phone_num = serializer.data["customer"]["cell"]
             f_name = serializer.data["customer"]["first_name"]
-            send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
-            send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
-            message = send_sms_confirmation(
-                f"Your appointment has been booked for {date}. Thank you, {f_name}!",
-                phone_num
-            )
+            try:
+                send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
+                send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
+                message = send_sms_confirmation(
+                    f"Your appointment has been booked for {date}. Thank you, {f_name}!",
+                    phone_num
+                )
+            except Exception as e:
+                print(e)
+                return Response(data={"message": e}, status=400)
             message = send_sms_confirmation(
                 f"New appointment! {f_name} has booked an appointment for {date}.",
                 "6013472434"
