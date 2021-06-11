@@ -56,7 +56,6 @@ class ReservationView(APIView):
                         customer.save()
             except Exception as e:
                 print(e)
-                return Response(data={"message": e}, status=400)
             message = send_sms_confirmation(
                 f"New appointment! {f_name} has booked an appointment for {date}.",
                 "6013472434"
