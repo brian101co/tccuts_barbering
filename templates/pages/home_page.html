@@ -21,28 +21,7 @@ Isaac Slatten | Barber
     <a class="skip-to-content-link" href="#main">
         Skip to content
     </a>
-    <nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'img/logo.png' %}" alt="logo" class="logo mr-2">
-                Isaac Slatten
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbar">
-                <div class="navbar-nav align-items-center">
-                    <a class="nav-item nav-link text-white mr-3" href="#about">About</a>
-                    <a class="nav-item nav-link text-white mr-3" href="#gallery">Gallery</a>
-                    <a class="nav-item nav-link text-white mr-3" href="#services">Services</a>
-                    {% if self.testimonial_placements.all %}
-                        <a class="nav-item nav-link text-white mr-3" href="#testimonials">Testimonials</a>
-                    {% endif %}
-                    <a class="nav-item nav-link text-white btn btn-primary px-4" href="#book-now">Book Now</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    {% include "includes/_navbar.html" with testimonials=self.testimonial_placements.all %}
 </header>
 
 <main id="main">
@@ -175,7 +154,7 @@ Isaac Slatten | Barber
         <div class="container">
             <div class="alert-container"></div>
             <h1 class="text-center text-white display-4 title">Book Now</h1>
-            <div class="row justify-content-center mt-5">
+            <div class="row justify-content-center mt-3 mt-md-5">
                 <!-- Step 1  -->
                 <div class="col-sm-12">
                     <div class="step step-1">
@@ -205,46 +184,39 @@ Isaac Slatten | Barber
                     <div class="step step-2 d-none">
                         <form action="." method="POST">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <h5 class="text-light">Booking Details</h5>
-                                </div>
                                 <div class="col-sm-12 col-md-6">
+                                    <h5 class="text-light my-3">Booking Details</h5>
                                     <div class="form-group">
                                         <label for="first-name" class="text-light">First Name</label>
                                         <input type="text" class="form-control" id="first-name">
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="last-name" class="text-light">Last Name</label>
                                         <input type="text" class="form-control" id="last-name">
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="email" class="text-light">Email address</label>
                                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                                         <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</small>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="phone" class="text-light">Phone</label>
                                         <input type="text" class="form-control" id="phone">
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="recieve-updates">
-                                        <label class="form-check-label" for="recieve-updates">
-                                            Yes, I would like to recieve SMS/Email updates.
-                                        </label>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary px-4 mt-3 d-none d-md-block" aria-hidden="true">Book Appointment</button>
+                                    <p class="text-light mt-3 d-none d-md-block" aria-hidden="true">
+                                        <small>
+                                            By clicking "Book Appointment", you agree to Tccut's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
+                                            . You consent to receive phone calls and SMS messages from Tccuts to provide updates regarding your appointment and/or changes
+                                            to pricing, marketing specials, and availability. You may receive up to 2 promotional messages a month. Reply with "STOP" to 
+                                            cancel at any time. Message and data rates may apply.
+                                        </small>
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 offset-md-3">
-                                    <div class="d-flex flex-column align-items-center justify-content-center my-3">
-                                        <h5 class="text-light mt-4">Select Services</h5>
-                                        <ul class="list-group">
+                                <div class="col-sm-12 col-md-6">
+                                    <h5 class="text-light my-3">Select Services</h5>
+                                    <div class="d-flex flex-column align-items-center justify-content-center">
+                                        <ul class="list-group service-list">
                                             {% for service in services %}
                                             <li class="list-group-item text-body service" data-price="{{ service.price }}">
                                                 {{ service.title }}
@@ -253,9 +225,17 @@ Isaac Slatten | Barber
                                             {% endfor %}
                                         </ul>
                                     </div>
+                                    <button type="submit" class="btn btn-primary px-4 mt-4 d-md-none">Book Appointment</button>
+                                    <p class="text-light mt-3 d-md-none">
+                                        <small>
+                                            By clicking "Book Appointment", you agree to Tccut's <a href="https://www.termsfeed.com/live/318e1913-e341-4df1-b167-a392b145d644">Terms of Use</a> and <a href="https://www.termsfeed.com/live/d99a4d95-caf8-428f-bfc0-1ac24708cc4b">Privacy Policy</a>
+                                            . You consent to receive phone calls and SMS messages from Tccuts to provide updates regarding your appointment and/or changes
+                                            to pricing, marketing specials, and availability. You may receive up to 2 promotional messages a month. Reply with "STOP" to 
+                                            cancel at any time. Message and data rates may apply.
+                                        </small>
+                                    </p>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary px-4 mt-3">Book Appointment</button>
                         </form>
                     </div>
 
@@ -280,27 +260,7 @@ Isaac Slatten | Barber
 </main>
 
 <div class="container">
-    <footer class="px-4 py-5">
-        <div class="row">
-            <div class="col-sm-12 col-md-4 d-flex justify-content-center">
-                <div class="wrapper d-flex align-items-center">
-                    <p class="text-light text-center mb-0">
-                        Designed and Developed<br>
-                        by <a class="text-light" href="https://www.oliverwebdevelopment.com/"><u>Oliver Web Development</u></a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
-                <p class="text-center text-light mb-0 my-4 my-md-0 copyright"></p>
-            </div>
-            <div class="col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
-                <a href="https://www.instagram.com/tc_cuts/" class="d-flex justify-content-center align-items-center text-light">
-                    <i class="fa fa-instagram mr-2 text-light" aria-hidden="true"></i>
-                    @tc_cuts
-                </a>
-            </div>
-        </div>
-    </footer>
+    {% include "includes/_footer.html" %}
 </div>
 
 {% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo.png' %}" alt="logo" class="logo mr-2">
+            Isaac Slatten
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar">
+            <div class="navbar-nav align-items-center">
+                <a class="nav-item nav-link text-white mr-3" href="#about">About</a>
+                <a class="nav-item nav-link text-white mr-3" href="#gallery">Gallery</a>
+                <a class="nav-item nav-link text-white mr-3" href="#services">Services</a>
+                {% if testimonials %}
+                    <a class="nav-item nav-link text-white mr-3" href="#testimonials">Testimonials</a>
+                {% endif %}
+                <a class="nav-item nav-link text-white btn btn-primary px-4" href="#book-now">Book Now</a>
+            </div>
+        </div>
+    </div>
+</nav>

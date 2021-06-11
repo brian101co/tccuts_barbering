@@ -81,9 +81,12 @@ footer a {
     background-color: initial;
     border-color: initial;
 }
+.service-list {
+    width: 100%;
+}
 .service {
     display: flex;
-    width: 16rem;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     font-family: 'Fredericka the Great';
@@ -116,9 +119,6 @@ footer a {
     }   
     .nav-link:hover:not(:last-child)::after {
         width: 100%;
-    }
-    .service {
-        width: 18rem;
     }
 }
 @media(min-width: 1060px) {

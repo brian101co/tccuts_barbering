@@ -9,3 +9,4 @@ sendgrid.env
 /media
 db.sqlite3
 shop.json
+db
