@@ -1,7 +1,7 @@
 import datetime
 import json
 from django.shortcuts import render
-from .models import Reservation, Schedule
+from .models import Customer, Reservation, Schedule
 from .serializers import ReservationSerializer, ScheduleSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
@@ -36,6 +36,7 @@ class ReservationView(APIView):
             date = request.data["date"]
             phone_num = serializer.data["customer"]["cell"]
             f_name = serializer.data["customer"]["first_name"]
+            l_name = serializer.data["customer"]["last_name"]
             try:
                 send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
                 send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
@@ -43,6 +44,16 @@ class ReservationView(APIView):
                     f"Your appointment has been booked for {date}. Thank you, {f_name}!",
                     phone_num
                 )
+
+                # Customer has opted out of SMS Messaging
+                if message.error_code == "21610":
+                    customer = Customer.objects.get(
+                        first_name=f_name,
+                        last_name=l_name,
+                        cell=phone_num)
+                    if customer.recieve_updates:
+                        customer.recieve_updates = False
+                        customer.save()
             except Exception as e:
                 print(e)
                 return Response(data={"message": e}, status=400)
