@@ -107,8 +107,8 @@ var Schedule = {
       success: function success(data) {
         var picker = new Pikaday({
           field: document.getElementById("date"),
-          minDate: new Date(String(data.schedule_start_date)),
-          maxDate: new Date(String(data.schedule_end_date)),
+          minDate: dayjs(data.schedule_start_date).toDate(),
+          maxDate: dayjs(data.schedule_end_date).toDate(),
           format: "YYYY-MM-DD"
         });
       }
