@@ -10,3 +10,4 @@ sendgrid.env
 db.sqlite3
 shop.json
 db
+.DS_Store
