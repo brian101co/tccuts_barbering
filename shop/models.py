@@ -87,7 +87,7 @@ class Reservation(models.Model):
             appointment_start_datetime.format("dddd, MMMM D YYYY, [at] h:mm a"),
             schedule_type='O',
             repeats=1,
-            next_run=appointment_start_datetime.shift(hours=-2)
+            next_run=appointment_start_datetime.shift(hours=-2).naive
         )
         super().save(*args, **kwargs)
 

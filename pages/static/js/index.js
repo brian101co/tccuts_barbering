@@ -85,11 +85,17 @@ function showSpinner() {
                     </div>`
         );
 }
+function showSelectServicesFormError() {
+    $('.step-2 .services-col').prepend('<div class="alert alert-danger mt-2" role="alert">Please select atleast one service.</div>')
+    setTimeout(() => {
+        $('.alert').remove()
+    }, 3000);
+}
 function showFormValidationError() {
     $('.step-2').prepend('<div class="alert alert-danger mt-2" role="alert">Please fill out all the fields.</div>')
     setTimeout(() => {
         $('.alert').remove()
-    }, 1500);
+    }, 3000);
 }
 function showThankyouMessage() {
     $('.thank-you')
@@ -169,6 +175,11 @@ $('.step-2 button').click((event) => {
         state.booking.customer.last_name = last_name;
         state.booking.customer.email = email;
         state.booking.customer.cell = phone;
+
+        if (state.booking.service.length < 1) {
+            showSelectServicesFormError();
+            return;
+        }
 
         step2.fadeOut(function () {
             $('.step-3').toggleClass('d-none');
