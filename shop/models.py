@@ -1,3 +1,6 @@
+import arrow
+
+from django_q.tasks import schedule
 from django.db import models
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import (
@@ -75,6 +78,18 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"Reservation by { self.customer }"
+
+    def save(self, *args, **kwargs):
+        appointment_start_datetime = arrow.get(self.start)
+        schedule(
+            'shop.notifications.sms.send_sms_reminder',
+            self.customer.cell,
+            appointment_start_datetime.format("dddd, MMMM D YYYY, [at] h:mm a"),
+            schedule_type='O',
+            repeats=1,
+            next_run=appointment_start_datetime.shift(hours=-2)
+        )
+        super().save(*args, **kwargs)
 
 class Schedule(models.Model):
     TIMESLOT_CHOICES = (

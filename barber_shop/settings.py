@@ -25,10 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
-    'rest_framework',
-    'corsheaders',
     'pages',
-    'django_extensions',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -45,6 +42,10 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'rest_framework',
+    'corsheaders',
+    'django_q',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,17 @@ WAGTAIL_SITE_NAME = 'Tccuts'
 ACCOUNT_SID = os.getenv("ACCOUNT_SID")
 AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 TWILIO_PHONE_NUM = os.getenv("TWILIO_PHONE_NUM")
+
+Q_CLUSTER = {
+    'name': 'tccuts_barbering',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default',
+    'has_replica': True
+}
 
 try:
     from .local_settings import *

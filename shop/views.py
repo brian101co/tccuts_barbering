@@ -1,14 +1,14 @@
 import datetime
 import json
-from django.shortcuts import render
+from rest_framework.utils.serializer_helpers import NestedBoundField
 from .models import Customer, Reservation, Schedule
 from .serializers import ReservationSerializer, ScheduleSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from .utils import getOpenings
-from shop.email import send_confirmation_email, send_appointment_email
-from shop.sms import send_sms_confirmation
+from .notifications.email import send_confirmation_email, send_appointment_email
+from .notifications.sms import send_sms_confirmation
 
 class ScheduleView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -37,14 +37,13 @@ class ReservationView(APIView):
             phone_num = serializer.data["customer"]["cell"]
             f_name = serializer.data["customer"]["first_name"]
             l_name = serializer.data["customer"]["last_name"]
+            send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
+            send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
             try:
-                send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
-                send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
                 message = send_sms_confirmation(
-                    f"Your appointment has been booked for {date}. Thank you, {f_name}!",
+                    f'Your appointment has been booked for {date}. Thank you, {f_name}! \n\n You may opt out of all messages by replying "STOP" to this message.',
                     phone_num
                 )
-
                 # Customer has opted out of SMS Messaging
                 if message.error_code == "21610":
                     customer = Customer.objects.get(
