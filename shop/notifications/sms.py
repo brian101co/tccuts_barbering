@@ -13,7 +13,7 @@ def send_sms_confirmation(text, to_phone_num):
 
 def send_sms_reminder(to_phone_num, appointment_date):
     message = client.messages.create(
-        body=f'Reminder: You\'re hair appointment with Isaac Slatten (Tccuts) is on {appointment_date}. \n\n You may opt out of all messages by replying "STOP" to this message.',
+        body=f'Reminder: Your appointment with Isaac Slatten (Tccuts) is on {appointment_date}. \n\n You may opt out of all messages by replying "STOP" to this message.',
         from_=TWILIO_PHONE_NUM,
         to=to_phone_num
     )
