@@ -12,7 +12,7 @@ def send_confirmation_email(to_emails, date, services, price):
     })
     message = Mail(
         from_email='isaacslatten27@gmail.com',
-        to_emails=to_emails,
+        to_email=to_emails,
         subject='Isaac Slatten (Tccuts): Appointment Confirmation and Details',
         html_content=email_template
     )
@@ -34,7 +34,7 @@ def send_appointment_email(date, service, name, email, phone, price):
     })
     message = Mail(
         from_email='isaacslatten27@gmail.com',
-        to_emails='isaacslatten27@gmail.com',
+        to_email='isaacslatten27@gmail.com',
         subject=f'{name} Booked an Appointment!',
         html_content=email_template
     )

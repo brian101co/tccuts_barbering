@@ -1,0 +1,3 @@
+SENDGRID
+-- sendgrid-django==4.2.0 requires sendgrid < 4 >= 3.5.
+-- sengrid==3.6.5 Mail() class __init__ uses to_email not to_emails (v6)
