@@ -1,7 +1,7 @@
 import os
 from django.template.loader import render_to_string
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from sendgrid.helpers.mail import Mail, Content
 from barber_shop.settings import SENDGRID_API_KEY
 
 def send_confirmation_email(to_emails, date, services, price):
@@ -14,7 +14,7 @@ def send_confirmation_email(to_emails, date, services, price):
         from_email='isaacslatten27@gmail.com',
         to_email=to_emails,
         subject='Isaac Slatten (Tccuts): Appointment Confirmation and Details',
-        html_content=email_template
+        content=Content("text/html", email_template)
     )
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
@@ -36,7 +36,7 @@ def send_appointment_email(date, service, name, email, phone, price):
         from_email='isaacslatten27@gmail.com',
         to_email='isaacslatten27@gmail.com',
         subject=f'{name} Booked an Appointment!',
-        html_content=email_template
+        content=Content("text/html", email_template)
     )
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
