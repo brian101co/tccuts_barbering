@@ -39,25 +39,25 @@ class ReservationView(APIView):
             l_name = serializer.data["customer"]["last_name"]
             send_confirmation_email(serializer.data["customer"]["email"], date, serializer.data["service"], request.data["price"])
             send_appointment_email(date, serializer.data["service"], f_name, serializer.data["customer"]["email"], phone_num, request.data["price"])
-            try:
-                message = send_sms_confirmation(
-                    f'Your appointment has been booked for {date}. Thank you, {f_name}! \n\n You may opt out of all messages by replying "STOP" to this message.',
-                    phone_num
-                )
-                # Customer has opted out of SMS Messaging
-                if message.error_code == "21610":
-                    customer = Customer.objects.get(
-                        first_name=f_name,
-                        last_name=l_name,
-                        cell=phone_num)
-                    if customer.recieve_updates:
-                        customer.recieve_updates = False
-                        customer.save()
-            except Exception as e:
-                print(e)
-            message = send_sms_confirmation(
-                f"New appointment! {f_name} has booked an appointment for {date}.",
-                "6013472434"
-            )
+            # try:
+            #     message = send_sms_confirmation(
+            #         f'Your appointment has been booked for {date}. Thank you, {f_name}! \n\n You may opt out of all messages by replying "STOP" to this message.',
+            #         phone_num
+            #     )
+            #     # Customer has opted out of SMS Messaging
+            #     if message.error_code == "21610":
+            #         customer = Customer.objects.get(
+            #             first_name=f_name,
+            #             last_name=l_name,
+            #             cell=phone_num)
+            #         if customer.recieve_updates:
+            #             customer.recieve_updates = False
+            #             customer.save()
+            # except Exception as e:
+            #     print(e)
+            # message = send_sms_confirmation(
+            #     f"New appointment! {f_name} has booked an appointment for {date}.",
+            #     "6013472434"
+            # )
             return Response(data=serializer.data, status=201)
         return Response(data=serializer.errors, status=400)
