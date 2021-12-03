@@ -89,7 +89,7 @@ Isaac Slatten | Barber
                 {% for image in gallery_images %}
                 {% image image.image fill-300x300 as img %}
                 <div class="col-lg-3 col-md-4 col-6">
-                    <a href="{{ img.url }}" class="d-block mb-4 h-100">
+                    <a data-fslightbox="gallery" href="{{ img.url }}" class="d-block mb-4 h-100">
                         <img class="img-fluid img-thumbnail" src="{{ img.url }}" alt="{{ image.alt }}">
                     </a>
                 </div>
