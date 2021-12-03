@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags cache %}
 
 {% block head %}
 <meta name="description" content="Serving Picayune MS and the surrounding area, Isaac is a local barber providing professional, quality haircuts.">
@@ -16,7 +16,7 @@ Isaac Slatten | Barber
 {% endblock %}
 
 {% block content %}
-
+{% cache 2592000 home_page %}
 <header>
     <a class="skip-to-content-link" href="#main">
         Skip to content
@@ -264,7 +264,7 @@ Isaac Slatten | Barber
 <div class="container">
     {% include "includes/_footer.html" %}
 </div>
-
+{% endcache %}
 {% endblock %}
 
 {% block scripts %}

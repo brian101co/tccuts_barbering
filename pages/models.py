@@ -17,6 +17,9 @@ from wagtail.core import blocks
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 
+from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
+
 @register_snippet
 class Gallery(models.Model):
     image = models.ForeignKey(
@@ -97,3 +100,9 @@ class HomePage(Page):
         context['services'] = Service.objects.all()
         context['gallery_images'] = Gallery.objects.all()[:8]
         return context
+
+    def save(self, **kwargs):
+        key = make_template_fragment_key("home_page")
+        cache.delete(key)
+        return super().save(**kwargs)
+    
