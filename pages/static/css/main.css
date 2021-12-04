@@ -3,18 +3,18 @@
 }
 body {
     background-color: #292d32;
-    color: #f8f9fa !important;
+    color: #f8f9fa;
 }
-.btn-primary {
+.btn-cta {
     background-color: transparent;
     border-radius: 0;
-    border: 3px solid white;
+    border: 3px solid #ac9144;
 }
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:not(:disabled):not(.disabled):active {
+.btn-cta:hover,
+.btn-cta:active,
+.btn-cta:not(:disabled):not(.disabled):active {
     background-color: transparent;
-    border-color: white;
+    border-color: #ac9144;
 }
 #book-now {
     min-height: 20rem;
@@ -48,9 +48,6 @@ body {
 .service:hover {
     cursor: pointer;
 }
-/* .selected {
-    background: rgb(199, 199, 199);
-} */
 .logo {
     width: 40px !important;
 }
@@ -70,9 +67,6 @@ footer {
 footer a {
     text-decoration: none; 
     font-size: 1rem; 
-}
-.fa-instagram {
-    font-size: 1.2rem;
 }
 .wrapper img {
     height: 2.5rem;
@@ -109,7 +103,7 @@ footer a {
     .nav-link:not(:last-child)::after {
         content: '';
         display: block;
-        background-color: white;
+        background-color: #ac9144;
         width: 0;
         height: 1px;
         transition: width 0.3s ease;
