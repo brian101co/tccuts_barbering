@@ -16,7 +16,9 @@ Isaac Slatten | Barber
 {% endblock %}
 
 {% block content %}
+{% comment %}
 {% cache 2592000 home_page %}
+{% endcomment %}
 <header>
     <a class="skip-to-content-link" href="#main">
         Skip to content
@@ -106,9 +108,9 @@ Isaac Slatten | Barber
                     <div class="container service-section mt-5">
                         <div class="row mx-auto">
                             {% for service in services %}
-                            <div class="col-sm-12 col-md-6">
-                                <div class="service d-flex justify-content-center w-100">
-                                    <p class="text-light text-center my-2">{{ service }}</p>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="service d-flex justify-content-between px-0 px-md-3">
+                                    <p class="text-light my-2">{{ service }}</p>
                                     <div class="ml-3">${{ service.price }}0</div>
                                 </div>
                             </div>
@@ -264,7 +266,9 @@ Isaac Slatten | Barber
 <div class="container">
     {% include "includes/_footer.html" %}
 </div>
+{% comment %}
 {% endcache %}
+{% endcomment %}
 {% endblock %}
 
 {% block scripts %}
