@@ -16,9 +16,8 @@ Isaac Slatten | Barber
 {% endblock %}
 
 {% block content %}
-{% comment %}
+
 {% cache 2592000 home_page %}
-{% endcomment %}
 <header>
     <a class="skip-to-content-link" href="#main">
         Skip to content
@@ -266,9 +265,7 @@ Isaac Slatten | Barber
 <div class="container">
     {% include "includes/_footer.html" %}
 </div>
-{% comment %}
 {% endcache %}
-{% endcomment %}
 {% endblock %}
 
 {% block scripts %}
