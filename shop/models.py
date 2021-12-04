@@ -2,13 +2,13 @@ import arrow
 
 from django_q.tasks import schedule
 from django.db import models
-from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import (
     FieldPanel, 
-    StreamFieldPanel, 
-    InlinePanel,
     MultiFieldPanel
 )
+
+from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
@@ -54,6 +54,11 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, **kwargs):
+        key = make_template_fragment_key("home_page")
+        cache.delete(key)
+        return super().save(**kwargs)
 
 class Reservation(models.Model):
     start = models.DateTimeField()

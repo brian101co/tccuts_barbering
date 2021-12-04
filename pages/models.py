@@ -40,6 +40,11 @@ class Gallery(models.Model):
     def __str__(self):
         return self.description
 
+    def save(self, **kwargs):
+        key = make_template_fragment_key("home_page")
+        cache.delete(key)
+        return super().save(**kwargs)
+
 @register_snippet
 class Testimonial(models.Model):
     image = models.ForeignKey(
@@ -62,6 +67,11 @@ class Testimonial(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, **kwargs):
+        key = make_template_fragment_key("home_page")
+        cache.delete(key)
+        return super().save(**kwargs)
+
 
 class TestimonialPlacement(Orderable, models.Model):
     page = ParentalKey('pages.HomePage', on_delete=models.CASCADE, related_name='testimonial_placements')
@@ -73,6 +83,7 @@ class TestimonialPlacement(Orderable, models.Model):
 
     def __str__(self):
         return f"{self.page.title} {self.testimonial.name}"
+
 
 class HomePage(Page):
     templates = "pages/home_page.html"

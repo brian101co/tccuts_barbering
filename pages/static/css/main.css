@@ -32,7 +32,7 @@ body {
     content: '';
     display: block;
     height: 1px;
-    background-color: white;
+    background-color: #ac9144;
     margin: 1rem 0;
 }
 .title::before {
@@ -62,7 +62,7 @@ body {
     width: 100%;
 }
 footer {
-    border-top: 1px solid white;
+    border-top: 1px solid #ac9144;
 }
 footer a {
     text-decoration: none; 
